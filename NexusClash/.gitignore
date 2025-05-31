@@ -1,0 +1,28 @@
+# Godot 4+ specific ignores
+.godot/
+export_presets.cfg
+override.cfg
+
+# General ignores
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.app
+*.DS_Store
+*.swp
+*~
+.#*
+*.TMP
+*.tmp
+
+# Exported files
+export/
+build/
+
+# Mono/C# specific
+.mono/
+bin/
+obj/

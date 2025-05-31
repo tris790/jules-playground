@@ -1,14 +1,15 @@
 #ifndef BRB_RENDERING_H
 #define BRB_RENDERING_H
 
-// Placeholder for rendering system functions
-// E.g., window creation, graphics initialization (Vulkan/OpenGL), drawing primitives
+#include <SDL2/SDL.h> // For SDL window and renderer
 
-typedef struct BrbWindow BrbWindow; // Opaque pointer
+// Using SDL_Window and SDL_Renderer directly for now
+// No need for BrbWindow typedef if we pass SDL_Window* directly
 
-BrbWindow* brb_renderer_init_window(int width, int height, const char* title);
-void brb_renderer_clear_screen();
-void brb_renderer_present_frame(BrbWindow* window);
-void brb_renderer_shutdown(BrbWindow* window);
+SDL_Window* brb_renderer_init_window(int width, int height, const char* title);
+SDL_Renderer* brb_renderer_create_renderer(SDL_Window* window); // New function
+void brb_renderer_clear_screen(SDL_Renderer* renderer); // Takes renderer
+void brb_renderer_present_frame(SDL_Renderer* renderer); // Takes renderer
+void brb_renderer_shutdown(SDL_Window* window, SDL_Renderer* renderer); // Takes both
 
 #endif // BRB_RENDERING_H
