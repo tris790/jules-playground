@@ -1,10 +1,10 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-const SPEED = 300
-const JUMP_VELOCITY = -400
-const GRAVITY = 1200
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+const GRAVITY = 1200.0
 
-var velocity = Vector2.ZERO
+# var velocity = Vector2.ZERO # Removed: velocity is a built-in property for CharacterBody2D
 # var hitstun_timer = 0.0 # Conceptual: To be used with hitstun logic
 # var damage_percentage = 0.0 # Conceptual: To influence knockback
 
@@ -42,7 +42,7 @@ var velocity = Vector2.ZERO
 # --- End Conceptual Combat System Notes ---
 
 func _physics_process(delta):
-	# Apply Gravity
+	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	# else:
@@ -50,48 +50,31 @@ func _physics_process(delta):
 		# This can make landings feel more stable if JUMP_VELOCITY isn't immediately reapplied.
 		# Consider if Input.is_action_just_pressed("ui_accept") should also gate this.
 		# if velocity.y > 0: # If falling or landed
-		#    velocity.y = 0
+		#    velocity.y = 0 # Only if not trying to jump in the same frame
 
-	# Conceptual Hitstun Check
+	# Conceptual Hitstun Check (structure remains for future use)
 	# if hitstun_timer > 0:
 	#     hitstun_timer -= delta
-	#     # Skip input processing while in hitstun
+	#     # Potentially apply knockback movement here without player input
+	#     # Example: velocity.x = move_toward(velocity.x, 0, SOME_HITSTUN_FRICTION * delta)
 	# else:
-	#     # Handle Input for Walking (only if not in hitstun)
-	#     var direction = 0
-	#     if Input.is_action_pressed("ui_left"):
-	#         direction -= 1
-	#     if Input.is_action_pressed("ui_right"):
-	#         direction += 1
-	#
-	#     if direction != 0:
-	#         velocity.x = direction * SPEED
-	#     else:
-	#         velocity.x = lerp(velocity.x, 0.0, 0.1) # Apply some friction/deceleration
-	#
-	#     # Handle Input for Jumping (only if not in hitstun and on floor)
-	#     if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	#         velocity.y = JUMP_VELOCITY
+	#     # Handle Player Input only if not in hitstun
 
-	# Current input handling (to be eventually nested under hitstun check)
-	var direction = 0
-	if Input.is_action_pressed("ui_left"):
-		direction -= 1
-	if Input.is_action_pressed("ui_right"):
-		direction += 1
-
-	if direction != 0:
+	# Get the input direction and handle the movement/deceleration.
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction:
 		velocity.x = direction * SPEED
 	else:
-		# A bit of friction when no input
-		velocity.x = lerp(velocity.x, 0.0, 0.1)
+		# Apply friction - Godot 4's move_toward is good for this
+		velocity.x = move_toward(velocity.x, 0, SPEED) # SPEED here acts as deceleration force.
+														 # Consider a separate FRICTION constant if SPEED is too abrupt.
 
-	# Handle Input for Jumping
+	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Apply Movement
-	velocity = move_and_slide(velocity, Vector2.UP)
+	# Move the character.
+	move_and_slide() # Godot 4: velocity is a property and is updated by move_and_slide
 
 # Conceptual function for applying knockback
 # func take_hit(knockback_vector, stun_duration):
