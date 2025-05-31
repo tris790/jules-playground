@@ -4,7 +4,7 @@ func _ready():
     print_debug("Minimal Dummy _ready() called.")
     print_debug("Dummy script is definitely running its _ready function!")
 
-func _physics_process(delta):
+func _physics_process(_delta):
     # Minimal physics process, ensure move_and_slide is called if needed
     # or character will fall through floor if gravity is applied by engine
     # For now, let's keep it truly minimal. If it falls, that's another data point.

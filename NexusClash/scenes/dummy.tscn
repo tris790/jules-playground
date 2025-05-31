@@ -22,8 +22,6 @@ __meta__ = {
 position = Vector2( 0, -32 )
 shape = SubResource( 2 )
 
-# Hitbox node and its child HitboxShape REMOVED
-
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
