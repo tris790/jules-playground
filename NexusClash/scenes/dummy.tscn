@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=2] # Hitbox and its shape subresource are removed, so load_steps becomes 3
+[gd_scene load_steps=3 format=3]
 
 [ext_resource path="res://scripts/dummy.gd" type="Script" id=1] # Changed script path
 

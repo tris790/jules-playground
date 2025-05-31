@@ -56,7 +56,7 @@ func _on_Hurtbox_area_entered(area):
 		if attacker_node and self.global_position.x < attacker_node.global_position.x:
 			knockback_direction_x = -1.0
 
-		var knockback_angle_rad = deg2rad(30)
+		var knockback_angle_rad = deg_to_rad(30)
 		var knockback_vector = Vector2(knockback_direction_x * cos(knockback_angle_rad), -sin(knockback_angle_rad))
 		knockback_vector = knockback_vector.normalized()
 

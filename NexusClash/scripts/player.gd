@@ -17,7 +17,7 @@ const ATTACK_ENDLAG_DURATION = 0.15 # seconds
 var original_color = Color(0.5, 0.5, 1.0, 1.0) # Store original player color
 var attack_color = Color(1.0, 0.5, 0.5, 1.0)   # Reddish color for attack visual
 
-onready var hitbox_shape = $Hitbox/HitboxShape
+@onready var hitbox_shape = $Hitbox/HitboxShape
 
 var damage_percentage: float = 0.0
 var hitstun_timer: float = 0.0 # Timer for hitstun state
@@ -198,7 +198,7 @@ func _on_Hurtbox_area_entered(area):
 			pass
 
 		# Create a normalized direction vector (e.g., mostly horizontal with some upward angle)
-		var knockback_angle_rad = deg2rad(30) # 30 degrees upward
+		var knockback_angle_rad = deg_to_rad(30) # 30 degrees upward
 		var knockback_vector = Vector2(knockback_direction_x * cos(knockback_angle_rad), -sin(knockback_angle_rad))
 		knockback_vector = knockback_vector.normalized()
 
