@@ -1,0 +1,26 @@
+# Build output
+build/
+*.o
+*.exe
+*.out
+
+# Object files directory (if objects are stored outside build/)
+obj/
+build/obj/
+
+# IDE and editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
