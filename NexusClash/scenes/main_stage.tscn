@@ -32,3 +32,7 @@ position = Vector2( 512, 450 )
 
 [node name="Dummy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 700, 450 )
+
+[node name="GameCamera" type="Camera2D" parent="."]
+position = Vector2( 512, 300 )
+current = true
