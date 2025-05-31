@@ -63,6 +63,7 @@ const KNOCKBACK_SCALE_FACTOR = 5.0
 # --- End Conceptual Combat System Notes ---
 
 func _ready():
+    print_debug("Player _ready() called.")
     add_child(attack_startup_timer)
     add_child(attack_active_timer)
     add_child(attack_endlag_timer)

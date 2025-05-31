@@ -14,6 +14,7 @@ var original_color = Color(0.7, 0.7, 0.7, 1.0) # Dummy's default color
 # No onready var for hitbox_shape needed
 
 func _ready():
+	print_debug("Dummy _ready() called.")
 	# No attack timers to setup
 	# Set its own original color if Visuals node exists
 	var visuals_node = get_node_or_null("Visuals")
